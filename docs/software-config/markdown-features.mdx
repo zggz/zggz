@@ -1,0 +1,76 @@
+---
+title: 终端
+description: 终端 zsh 配置
+hide_table_of_contents: true
+---
+
+常用终端工具插件配置
+
+## iterm2 安装
+[官网地址](https://iterm2.com/)
+### 配置title
+- 配置 title 是当前目录显示,将一下内容添加到`.zshrc`
+```shell
+DISABLE_AUTO_TITLE="true"
+tab_title() {
+  # sets the tab title to current dir
+  echo -ne "\e]1;${PWD##*/}\a"
+}
+add-zsh-hook precmd tab_title
+```
+## 安装zsh
+
+[官网地址](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
+
+快捷安装
+```shell
+brew install zsh
+```
+### 切换Bash
+- 查看当前Bash
+    ```shell
+    echo $SHELL
+    ```
+- 切换Bash
+    ```shell
+    chsh -s /bin/zsh
+    ```
+
+## 安装oh my zsh
+[官网地址](https://ohmyz.sh/)
+
+快捷安装
+```shell
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+### 插件安装
+#### 插件下载
+- 高亮
+    ```shell
+  git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    ```
+- 自动提示
+    ```shell
+  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-autosuggestions
+    ```
+
+#### 插件配置
+- 打开配置文件
+    ```shell
+    vim ~/.zshrc
+    ```
+- 配置插件
+    ```shell
+    plugins=(
+        git
+        zsh-autosuggestions
+        zsh-syntax-highlighting
+        )
+    ```
+- 更新配置文件
+    ```shell
+    source ~/.zshrc
+    ```
+
+
